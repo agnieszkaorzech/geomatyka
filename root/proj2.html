@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+// $(function() {
+// $("#ulicaSplitter").kendoGrid({
+//     scrollable:true,
+//   resizable: true,
+//    sortable: true,
+//   filterable: true,
+//   pageable: true,
+//   columns: [{
+//      field: "Ulica",
+title: "Ulica",
+
+}, {
+field: "Dokument",
+title: "Dokument"
+}, {
+field: "Nazwa w PESEL",
+title: "Nazwa w PESEL"
+}, {
+field: "Nazwa w TERYT",
+title: "Nazwa w TERYT"
+}, {
+field: "SYM_UL w TERYT",
+title: "SYM_UL w TERYT"
+}, {
+field: "KOD",
+title: "KOD"
+}, {
+field: "Os",
+title: "Os"
+}
+]
+});
+// $("#adresy").kendoGrid({
+//   columns: [{ field: "Ulica",
+//      title: "Ulica",
+
+//   }, {
+//  field: "Dokument",
+//   title: "Dokument"
+
+
+//  }]
+// });
+});
+</body>
+</html>
+
+var viewModel = kendo.observable({
+isVisible: false, products: new kendo.data.DataSource({
+schema:{
+model:{
+id : "ProductID",
+fields:{
+Ulica:{type:"String"},
+Dokument:{type:"String"},
+NazwaPESEL:{type:"Integer"},
+NazwaTERYT:{type:"String"},
+SYM_UL_TERYT:{type:"Integer"},
+Kod:{type:"Integer"},
+OS:{type:"Integer"}
+}
+}
+}
+})
+
+
+});

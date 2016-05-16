@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="css/kendo.common-material.min.css"/>
+    <link rel="stylesheet" href="css/kendo.material.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
+
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/kendo.js"></script>
+    <script src="js/lib/kendo.culture.pl-PL.min.js"></script>
+
+
+</head>
+<body>
+
+<div id="container">
+    <!--glowne okno!-->
+    <div id="myWindow"
+         data-role="window"
+         data-title="Rejestr miejscowosci ulic i adresów"
+         data-width="1050"
+         data-height="500"
+         data-bind="visible: isVisible">
+
+        <!-- start splitter-->
+        <div data-role="splitter"
+             data-panes="[
+                { collapsible: false },
+                { collapsible: false, size: '70px' },
+                { collapsible: false, resizable: false, size: '70px' }
+             ]"
+             data-orientation="vertical"
+             data-bind="visible: isVisible, events: { resize: onResize }"
+             style="height: 100%; width: 100%; border:0;">
+
+            <div id="top-pane">
+                <div data-role="splitter"
+                     data-panes="[
+                        { collapsible: true },
+                        { collapsible: false },
+                        { collapsible: true }
+                     ]"
+                     data-bind="visible: isVisible, events: { resize: onResize, expand: onExpand, collapse: onCollapse }"
+                     style="height: 100%; width: 100%;">
+
+                    <div id="left-pane">
+                        <div class="pane-content">
+                            <h3>Inner splitter / left pane</h3>
+                            <p><div class="icon24-drukarka"></div>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="center-pane">
+                        <div class="pane-content">
+                            <h3>Inner splitter / center pane</h3>
+                            <p>Resizable only.</p>
+                        </div>
+                    </div>
+                    <div id="right-pane">
+                        <div class="pane-content">
+                            <h3>Inner splitter / right pane</h3>
+                            <p>Resizable and collapsible.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="middle-pane">
+                <div class="pane-content">
+                    <h3>Outer splitter / middle pane</h3>
+                    <p>Resizable only.</p>
+                </div>
+            </div>
+            <div id="bottom-pane">
+                <div class="pane-content">
+                    <h3>Outer splitter / bottom pane</h3>
+                    <p>Non-resizable and non-collapsible.</p>
+                </div>
+            </div>
+        </div>
+        <!--end splitter-->
+
+
+    </div> <!-- end window -->
+</div>
+
+<script>
+    var viewModel = kendo.observable({
+        isVisible: true,
+        products: new kendo.data.DataSource({
+            schema: {
+                model: {
+                    id: "ProductID",
+                    fields: {
+                        Ulica: {type: "String"},
+                        Dokument: {type: "String"},
+                        Nazwa_w_PESEL: {type: "Integer"},
+                        Nazwa_w_TERYT: {type: "String"},
+                        SYM_UL_w_TERYT: {type: "Integer"},
+                        Kod: {type: "Integer"},
+                        OS: {type: "Integer"}
+                    }
+                }
+            }
+        })
+ });
+    kendo.bind($("#myWindow"), viewModel);
+    viewModel.open();
+</script>
+
+
+</body>
+</html>

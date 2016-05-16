@@ -1,0 +1,229 @@
+.iw-box-containter {
+    float: left;
+    margin: 0;
+    padding: 0.2em;
+    max-width: 660px;
+    width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #f9f9f9;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+.iw-box-containter li {
+    margin: 1px 0px;
+    list-style: none;
+    float: left;
+    width: 100%;
+}
+
+.iw-box {
+    background-color: white !important; /* #f9f9f9; */
+    color: #333;
+    display: table;
+    padding: 0.1em;
+    border: none !important; /* #f9f9f9; */
+    margin: 0;
+    width: 100% !important;
+}
+
+.iw-form-label {
+    display: inline-block;
+    float: left;
+    line-height: 1.6em;
+    padding: 2px 4px;
+    text-align: right;
+    width: 35%;
+    font-weight: bold;
+}
+.k-grid-content {
+    min-height: 280px !important;
+}
+
+.iw-form-inputsection {
+    width: 60%;
+    height: 100%;
+    float: right;
+    box-sizing: border-box;
+}
+
+.iw-form-inputsection .iw-form-microtoolbar {
+    width: 20px;
+    height: 6em;
+    line-height: 1.6em;
+    padding: 0;
+    color: #333;
+    float: right;
+    background-color: #efefef;
+}
+
+.iw-form-inputsection div.iw-icon16 {
+    margin: 0 2px;
+    opacity: 0.5;
+}
+
+.iw-form-inputsection div.iw-icon16:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.iw-form-inputsection .k-datepicker {
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.iw-form-inputsection:hover .k-select {
+    background-color: #BBBBBB;
+    width: 2em;
+}
+
+.iw-form-inputsection .k-i-calendar {
+    margin: -8px 0 0 -8px;
+}
+
+.iw-form-inputsection .k-checkbox-label:after, .iw-form-inputsection .k-radio-label:after {
+    line-height: 1em;
+}
+
+.iw-form-inputsection .k-radio-label:before {
+    width: 1em;
+    height: 1em;
+}
+
+.iw-form-inputsection input,
+.iw-form-inputsection textarea,
+.iw-form-inputsection select {
+    width: 100%;
+}
+
+.iw-form-inputsection .k-combobox, .iw-form-inputsection .k-dropdown {
+    width: 100%;
+    margin: 0 0 0.5em;
+}
+
+.iw-form-inputsection .k-combobox span input {
+    padding: 0 !important;
+}
+
+.k-dropdown.k-state-focused {
+    box-shadow: none !important;
+    /* poniższe skopiowane z k-state-default */
+    background-color: #f9f9f9;
+    background-image: none;
+    background-position: 50% 50%;
+    border-color: #f9f9f9;
+}
+
+/* Kalendarz w trybie "podwójnym" */
+.iw-form-doubleinputssection .k-datepicker {
+    width: 50% !important;
+}
+
+/* Inne niż kalendarz pola w trybie podwójnym (muszą być niezależnie od kalendarza) */
+.iw-form-doubleinputssection input.iw-form-inputhalf {
+    width: 50% !important;
+}
+
+.iw-form-inputsection select.iw-form-select {
+    height: 2.2em;
+}
+
+.iw-form-inputsection select.iw-form-multiselect {
+    height: 6em;
+    overflow-x: hidden; /* na błąd w chrome */
+    overflow-y: visible; /* na błąd w chrome */
+}
+
+.iw-form-inputsection .iw-form-microtoolbar-select {
+    width: 80%;
+    width: calc(90%);
+    height: 6em;
+    overflow-x: hidden; /* na błąd w chrome */
+    overflow-y: visible; /* na błąd w chrome */
+}
+
+.iw-form-inputsection select input {
+    width: 100%;
+}
+
+.iw-form-inputsection .k-button {
+    width: 50%;
+    box-sizing: border-box;
+}
+
+input.iw-input-boolean:checked + label {
+    color: white;
+    border-color: darken(@accent, 10%);
+    background: @accent;
+}
+
+.iw-form-inputsection input[type='checkbox'], .iw-form-inputsection input[type='radio'] {
+    display: none;
+}
+
+.iw-form-inputsection label {
+    width: 100%;
+    line-height: 2em;
+}
+
+.iw-form-inputsection textarea {
+    height: 8em;
+    resize: vertical;
+}
+
+.iw-form-inputsection .k-input {
+    padding: 2px 0.3em !important;
+    height: 2em; /* na błąd w chrome */
+}
+
+.iw-box-w1 {
+    width: 230px
+}
+
+.iw-box-h1 {
+    height: 40px
+}
+
+.iw-box-h2 {
+    height: 84px
+}
+
+.iw-box-h3 {
+    height: 128px
+}
+
+.iw-box-h4 {
+    height: 172px
+}
+
+.iw-box-header {
+    margin: -2px 0 5px -2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #eeeeee;
+    color: #333;
+    background-repeat: no-repeat;
+    font-size: 1em;
+    background-position: right center;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wIDDygNb3lt/gAAAStJREFUKM99kj1Lw1AYhZ9asQ72Y1AQujqYITRTYqcuFXTRxam76bV/wGyu6R+QJHVyUIdOgoMIQurSBISUDtpV6OQiOhQEwaUpl2vwbC/nPJwzvDkUuYFXB3TgB3hwbPFGhnISsAucA1tK5hboOLaY/gHdwGsBl0CebE0BS4aX3cCrAj6QrxRLHDabbK5vABDGEcNRAlAFLoD9FFwCToA1gJqmsVoo0O35hHFEw7SoFEtpds8NPH3RCNTTI4wjwjjiH5nAOG0sq66xrdEwLe6fBnx8fcpWWZ46UUHLMBiOEpLXF9WayFOvgJbs+jfXWTPfgcdFo2OLO6AvJ06P2+zUDBXsOLaYyY0AbWAFOADo9nwZ+AbOHFv0Mz9n/ghHc1gHZsAzEDi2GKv1v/xaT8YxNg9aAAAAAElFTkSuQmCC');
+}
+
+.iw-form-invalid {
+    border: 1px solid red;
+}
+
+.iw-form-image {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+.iw-form-placeholder-text {
+    color: #bbb;
+}

@@ -1,0 +1,574 @@
+@import "../Themes/kendo.bootstrap.less";
+@import "icons.less";
+@import "iw.form.less";
+@import "loader.less";
+@import "nprogres.less";
+@import "smaller.less";
+@import "ol3.1.1.less";
+@import "iw.ui.less";
+@import "aga.less";
+@import "FontAwesome/less/font-awesome.less";
+
+@menuBlockWidth: 230px;
+@smallLeftMenu: 45px;
+@beltSchadow: fadeout(black, 60%);
+@menuBackgroundColor: #414141;
+@fontColorMenu: #A6A6A6;
+@topBeltHeight: 30px;
+@topBeltZindex: 100;
+@fontSize: 12px;
+
+@paddingTop: @topBeltHeight + 10px;
+
+.fixed-window {
+    position: fixed !important;
+}
+.ikony_top {
+    .fa-times {
+        margin-right:30px;
+    }
+    .fa-file-text {
+        margin-right:30px;
+    }
+    .fa-archive{
+        margin-right:30px ;
+    }
+    .fa-minus-square{
+        margin-right:30px ;
+    }
+    .fa-plus{
+        margin-left: 20px;
+    }
+    .fa-plus-circle{
+        margin-left: 220px;
+    }
+
+    i {
+        color: dodgerblue;
+        margin-right: 10px;
+        font-size: 15px;
+        &:hover {
+            color: red;
+        }
+    }
+}
+.ikony_adr{
+    .fa-university{
+        margin-left: 20px;
+        }
+    i {
+        color: dodgerblue;
+        margin-right: 10px;
+        font-size: 15px;
+     }
+
+    }
+.ikony_adr1{
+    .fa-university{
+        margin-left: 20px;
+    }
+        i {
+            color: dodgerblue;
+            margin-right: 10px;
+            font-size: 15px;
+            }
+
+        }
+
+
+/* w celu utworzenia nieprzekraczalnych okien modalnych zrobiono kopie klasy k-window, ktorą stosuje się tylko do takich okienk */
+div.iw-window {
+    display: inline-block;
+    position: absolute;
+    z-index: 10001;
+    border-style: solid;
+    border-width: 1px;
+    padding-top: 2em;
+}
+
+.k-ie7 .iw-window {
+    padding-bottom: 1.16em
+}
+
+.iw-window > .k-resize-handle {
+    position: absolute;
+    z-index: 1;
+    background-color: #fff;
+    font-size: 0;
+    line-height: 6px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    zoom: 1
+}
+
+.iw-window .k-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    filter: alpha(opacity=0);
+    opacity: 0
+}
+
+.k-ie7 div.iw-window {
+    display: inline;
+    zoom: 1
+}
+
+.iw-window > div.k-popup-edit-form {
+    padding: 1em 0
+}
+
+.k-ie7 .iw-window {
+    padding-bottom: 1.16em
+}
+
+.k-window.k-state-focused {
+    border-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* okno przypięte (na potrzeby kendo-ui) */
+.iw-window-keeptop {
+    z-index: 99998 !important; /* poniżej menu bocznego */
+    border-color: rgba(63, 81, 181, 0.5) !important; /* #3f51b5 */
+    border-radius: 2px 2px 0 0 !important;
+}
+
+.iw-window-keeptop.k-state-focused {
+    box-shadow: 1px 1px 7px 1px rgba(63, 81, 181, 0.5) !important; /* #3f51b5 */
+}
+
+.iw-window-keepbottom {
+    z-index: 1001 !important; /* poniżej menu bocznego */
+}
+
+/* okno modalne (na potrzeby kendo-ui) */
+.iw-window-modal {
+    z-index: 900102 !important;
+}
+
+/* kendo ui - menu - żeby obrazek wielkości 24px wyglądał ładnie */
+.k-menu .k-item > .k-link {
+    padding: 0.3em 0.5em;
+}
+
+/* klasa do oznaczania elementu menu, który jest TYLKO obrazkiem (bez tekstu) */
+.iw-menu-imageButton {
+    margin: 0 !important;
+}
+
+/* klasa do oznaczenia elementu menu, który jest TYLO tekstem (bez obrazka, ale ze strzałką) */
+.iw-menu-textButton {
+    line-height: 24px;
+}
+
+.k-button {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+.k-i-unkeeptop {
+    background-position: -160px -272px;
+}
+
+.k-i-keeptop {
+    background-position: -160px -256px;
+}
+
+.k-i-restorefrombottom {
+    background-position: -32px -128px;
+}
+
+.k-i-maximizetobottom {
+    background-position: -32px -144px;
+}
+
+.k-menu, .k-menu-group {
+    padding: 0 !important;
+}
+
+/* żeby rozwijane przyciski menu nad tabelą miały odpowiedni odstęp od prawej krawędzi */
+.k-menu .k-item > .k-link > .k-i-arrow-s {
+    margin-right: 0 !important;
+}
+
+.k-menu .k-item > .k-link > .k-i-arrow-e {
+    right: 0;
+}
+
+.gradeintBackround(@color) {
+    background: lighten(@color, 60%); /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, lighten(@color, 20%) 0%, lighten(@color, 15%) 100%);
+    background: -webkit-radial-gradient(center, ellipse cover, lighten(@color, 20%) 0%, lighten(@color, 15%) 100%);
+    background: radial-gradient(ellipse at center, lighten(@color, 20%) 0%, lighten(@color, 15%));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=lighten(@color, 20%), endColorstr=lighten(@color, 15%), GradientType=1);
+}
+
+#ieWorkPlace {
+    position: relative;
+    margin-top: @topBeltHeight;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%
+}
+
+.iw-window-maximize {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.inset-text-effect {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    border: none;
+    text-align: center;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    text-shadow: 1px 1px 0 rgba(140, 140, 140, 0.6), -1px -1px 1px rgba(0, 0, 0, 0.67);
+}
+
+.k-widget.k-window.k-window-maximized {
+    box-sizing: border-box;
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+}
+
+.minMenu {
+    left: @smallLeftMenu !important;
+    top: @topBeltHeight !important;
+}
+
+.maxMenu {
+    left: @menuBlockWidth !important;
+    top: @topBeltHeight !important;
+}
+
+body {
+    font-size: @fontSize;
+}
+
+#container {
+    width: 100%;
+}
+
+.smallLeftMenu {
+    left: @smallLeftMenu !important;
+}
+
+.largeLeftmenu {
+    left: @menuBlockWidth !important;
+}
+
+nav {
+    position: absolute;
+    font-weight: 100;
+    font-size: 13px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: @menuBlockWidth;
+    float: left;
+    height: 100%;
+    background: @base;
+    //border-right: 2px solid darken(@base, 30%);
+    box-sizing: border-box;
+    .k-item {
+        border: none;
+    }
+    .k-widget {
+        border: none !important;
+    }
+}
+
+#ieWorkFlow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: @menuBlockWidth;
+    float: right;
+    .gradeintBackround(@normal-background);
+    border-left: 1px solid fadeout(@hover-background, 30%);
+}
+
+.ieTopBelt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: @topBeltZindex;
+    height: @topBeltHeight;
+    background: @accent;
+    color: white;
+}
+
+#ieUserBlock {
+    box-sizing: border-box;
+    width: @menuBlockWidth;
+    height: auto;
+    padding: (@topBeltHeight + 20px) 10px 10px;
+    position: relative;
+    margin-bottom: 20px;
+    min-height: 120px;
+    color: @panelbar-content-color;
+}
+
+@userBlockWidth: @menuBlockWidth - 20px;
+#ieAvatar {
+    width: @userBlockWidth / 4;
+    height: @userBlockWidth /4;
+    float: left;
+    img {
+        border-radius: 50%;
+    }
+}
+
+#ieName, .ieName {
+    float: right;
+    width: (@userBlockWidth / 3) * 2;
+    text-align: justify;
+    hyphens: auto;
+    &:first-line {
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+    hr {
+        opacity: 0.6;
+    }
+}
+
+.ieLastLoginInfo {
+    font-size: 0.7em;
+    position: absolute;
+    line-height: 150%;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    &::first-line {
+        font-weight: bold;
+    }
+}
+
+.ieShowPerm {
+    margin-top: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    clear: both;
+    text-align: right;
+    font-size: 0.9em;
+}
+
+.ieRole {
+    font-size: 0.8em;
+    color: darkgrey;
+
+}
+
+#ieTools {
+    box-sizing: border-box;
+    text-align: right;
+    float: right;
+    padding-right: 100px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    i {
+        font-size: 16pt;
+        margin-top: 3px;
+    }
+    .themeChooser {
+        margin-left: 10px;
+        position: relative;
+        top: -2px;
+        width: 110px;
+        .k-dropdown-wrap.k-state-default {
+            background-color: @accent !important;
+        }
+    }
+}
+
+.menuExpand {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    cursor: pointer;
+    &::before {
+        content: "\f0c9";
+        font-family: FontAwesome;
+        font-size: 18px;
+        left: 10px;
+        position: absolute;
+    }
+}
+
+.ieSmallImgUserBolck {
+    width: @smallLeftMenu;
+    margin: auto;
+}
+
+.ieUserInfo {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    top: -32px;
+    display: none;
+}
+
+.ieUserInfoToolTip {
+    min-width: 200px;
+    width: auto !important;
+    text-align: center;
+}
+
+#ieAplicationTitle {
+    font-size: 15px;
+    font-weight: bold;
+    left: 10px;
+    overflow: hidden;
+    position: relative;
+    top: 6px;
+    width: 200px;
+    i {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+}
+
+/* iw_info */
+#iw-info-container {
+    z-index: 10004 !important;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    background-color: fadeout(@info, 30%);
+    max-height: 93%;
+    position: absolute;
+    right: 20px;
+    top: 40px;
+    margin-bottom: 30px;
+}
+
+.iw-info-img {
+    margin: 1em;
+    float: left;
+}
+
+.iw-info-content {
+    margin: 1em 1em 1em 0;
+    max-width: 17em;
+    width: 17em;
+    float: left;
+    min-height: 36px;
+}
+
+/* dla kendo-ui: żeby nie było burdelu z borderami */
+.k-notification {
+    border-style: none !important;
+    border-width: 0 !important;
+}
+
+/* w celu utworzenia nieprzekraczalnych okien modalnych zrobiono kopie klasy k-window, ktorą stosuje się tylko do takich okienk */
+div.iw-window {
+    display: inline-block;
+    position: absolute;
+    z-index: 10001;
+    border-style: solid;
+    border-width: 1px;
+    padding-top: 2em
+}
+
+.k-ie7 .iw-window {
+    padding-bottom: 1.16em
+}
+
+.iw-window > .k-resize-handle {
+    position: absolute;
+    z-index: 1;
+    background-color: #fff;
+    font-size: 0;
+    line-height: 6px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    zoom: 1
+}
+
+.iw-window .k-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    filter: alpha(opacity=0);
+    opacity: 0
+}
+
+.k-ie7 div.iw-window {
+    display: inline;
+    zoom: 1
+}
+
+.iw-window > div.k-popup-edit-form {
+    padding: 1em 0
+}
+
+.k-ie7 .iw-window {
+    padding-bottom: 1.16em
+}
+
+.k-window.k-state-focused {
+    border-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* okno przypięte (na potrzeby kendo-ui) */
+.iw-window-keeptop {
+    z-index: 99998 !important; /* poniżej menu bocznego */
+    border-color: rgba(63, 81, 181, 0.5) !important; /* #3f51b5 */
+    border-radius: 2px 2px 0 0 !important;
+}
+
+.iw-window-keeptop.k-state-focused {
+    box-shadow: 1px 1px 7px 1px rgba(63, 81, 181, 0.5) !important; /* #3f51b5 */
+}
+
+.iw-window-keepbottom {
+    z-index: 1001 !important; /* poniżej menu bocznego */
+}
+
+/* okno modalne (na potrzeby kendo-ui) */
+.iw-window-modal {
+    z-index: 900102 !important;
+}
+
+.colorChanderHeader {
+    text-align: center;
+    font-weight: bold;
+}
+
+.button-filter-changed {
+    background-color: #4da6ff !important;
+}
+
+.fixed-window {
+    position: fixed !important;
+}
+div.k-window-content {
+    padding: 0 !important;
+}

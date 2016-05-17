@@ -28,8 +28,7 @@
          data-height="400"
          style="padding:0; border: none;"
          data-actions="[
-                 'Pin',
-                 'Minimize',
+                'Minimize',
                  'Maximize',
                  'Close',
                  ]"
@@ -89,25 +88,20 @@
                          data-resizable="true"
                          data-columns="[
                              { 'field': 'login', 'width': 50, 'title' : 'Login'},
-                             { 'field': 'naz_druk','width': 50, 'title' : 'Nazwa drukowana' },
+                             { 'field': 'naz_druk','width': 50, 'title' : 'Nazwa drukowana', },
                              { 'field': 'naz_wys','width': 50, 'title' : 'Nazwa wyświetlana' },
-                             { 'field': 'zabl','width': 20, 'title' : 'Zablokowany' },
-                             { 'field': 'arch','width': 20, 'title' : 'Zarchiwizowany' },
-                             { 'field': 'ost_log','width': 50, 'title' : 'Ostatnie logowanie','format': '{0:MM/dd/yyyy}' },
-                             { 'field': 'il_log','width': 30, 'title' : 'Ilość logowań' },
-                             { 'field': 'gen_zap','width': 30, 'title' : 'Wygenerowane zapytania' },
-                             { 'field': 'il_zap', 'width': 30,'title' : 'Ilość zapytań' },
-                             {'command': ['edit', 'destroy'],'width': 50, 'title': '&nbsp;'},
+                             { 'field': 'zabl','width': 20, 'title' : 'Zablokowany','filterable':false },
+                             { 'field': 'arch','width': 20, 'title' : 'Zarchiwizowany','filterable':false },
+                             { 'field': 'ost_log','width': 50, 'title' : 'Ostatnie logowanie','format': '{0:MM/dd/yyyy}' ,'filterable':false},
+                             { 'field': 'il_log','width': 30, 'title' : 'Ilość logowań' ,'filterable':false},
+                             { 'field': 'gen_zap','width': 30, 'title' : 'Wygenerowane zapytania' ,'filterable':false},
+                             { 'field': 'il_zap', 'width': 30,'title' : 'Ilość zapytań','filterable':false },
+                             {'command': ['edit', 'destroy'],'width': 50, 'title': '&nbsp;','filterable':false},
                              ]"
 
                          data-editable="inline"
 
-
-                         data-bind="source: products,
-                            visible: isVisible,
-                            events: {
-                            save: onSave
-                            }"
+                         data-bind="source: products"
 
                          data-filterable="[
                          { field: 'login', operator: 'startswith' },
@@ -118,39 +112,54 @@
                          { field: 'ost_log', operator: 'startswith' },
                          { field: 'il_log', operator: 'startswith' },
                          { field: 'gen_zap', operator: 'startswith' },
-                         { field: 'il_zap',operator: 'startswith'  },
-
-
-                         ]"
+                         { field: 'il_zap',operator: 'startswith'  },]"
 
                          style="height: 100%; border: none;">
                     </div>
                 </div>
             </div>
         </div>
+
+        <!--drugie okno do dodania użytkownika-->
+        <div id="window2"
+             data-bind="visible: notVisible"
+             data-role="window"
+             style="background-color: lightgray; width:300px; height: 200px;">
+        </div>
+
+
     </div>
     <script>
-        var viewModel;
-        viewModel = kendo.observable({
-            isVisible: true,
+        $(document).ready(function () {
 
-            products: new kendo.data.DataSource({
-                schema: {
-                    model: {
-                        id: "grid",
-                        fields: {
-                            login: {type: "string" },
-                            naz_druk: {type: "string"},
-                            naz_wys: {type: "string"},
-                            zabl: {type: "string"},
-                            arch: {type: "string"},
-                            ost_log: {type: "date",editable: false},
-                            il_log: {type: "number",editable: false},
-                            gen_zap: {type: "number",editable: false},
-                            il_zap: {type: "number",editable: false}
-                        }
-                    }
+            var viewModel;
+            viewModel = kendo.observable({
+                isVisible: true,
+                onSave: function (e) {
+                    kendoConsole.log("event :: save(" + kendo.stringify(e.values, null, 4) + ")");
                 },
+                onMenuSelect: function (e) {
+                    var text = $(e.item).data('menuId');
+                    $('#window2').data('kendoWindow').open();
+                },
+
+                products: new kendo.data.DataSource({
+                    schema: {
+                        model: {
+                            id: "grid",
+                            fields: {
+                                login: {type: "string"},
+                                naz_druk: {type: "string"},
+                                naz_wys: {type: "string"},
+                                zabl: {type: "string"},
+                                arch: {type: "string"},
+                                ost_log: {type: "date", editable: false},
+                                il_log: {type: "number", editable: false},
+                                gen_zap: {type: "number", editable: false},
+                                il_zap: {type: "number", editable: false}
+                            }
+                        }
+                    },
                     batch: true,
                     data: [{
                         "login": "AGCDE",
@@ -175,11 +184,10 @@
                             "il_zap": "2"
                         }]
                 })
+            });
+
+            kendo.bind($("#oknoGlowne"), viewModel);
         });
-
-        kendo.bind($("#oknoGlowne"), viewModel);
-
-
 
     </script>
 

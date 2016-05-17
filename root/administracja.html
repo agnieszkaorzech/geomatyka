@@ -14,7 +14,7 @@
     <script src="js/lib/kendo.js"></script>
     <script src="js/lib/kendo.culture.pl-PL.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.js"></script>
-    <script src="http://kendo.cdn.telerik.com/<version>/js/messages/kendo.messages.pl-PL.min.js"></script>
+
 
 </head>
 <body>
@@ -76,8 +76,8 @@
                         <span class="fa fa-pencil-square-o"></span></li>
                 </div>
                 <div>
-                    <div data-role="grid"
-                         data-editable="false"
+                    <div id="grid"
+                         data-role="grid"
                          data-sortable="true"
                          data-pageable='{
                              "previousNext": true,
@@ -99,7 +99,6 @@
                              { 'field': 'il_zap', 'width': 30,'title' : 'Ilość zapytań' },
                              {'command': ['edit', 'destroy'],'width': 50, 'title': '&nbsp;'},
                              ]"
-
 
                          data-editable="inline"
 
@@ -138,17 +137,17 @@
             products: new kendo.data.DataSource({
                 schema: {
                     model: {
-                        id: "ProductID",
+                        id: "grid",
                         fields: {
-                            login: {type: "string"},
+                            login: {type: "string" },
                             naz_druk: {type: "string"},
                             naz_wys: {type: "string"},
                             zabl: {type: "string"},
                             arch: {type: "string"},
-                            ost_log: {type: "date"},
-                            il_log: {type: "number"},
-                            gen_zap: {type: "number"},
-                            il_zap: {type: "number"}
+                            ost_log: {type: "date",editable: false},
+                            il_log: {type: "number",editable: false},
+                            gen_zap: {type: "number",editable: false},
+                            il_zap: {type: "number",editable: false}
                         }
                     }
                 },
@@ -177,9 +176,9 @@
                         }]
                 })
         });
+
         kendo.bind($("#oknoGlowne"), viewModel);
 
-        kendo.culture("pl-PL");
 
 
     </script>

@@ -28,7 +28,6 @@ $(document).ready(function () {
 
             }
         },
-
         products: new kendo.data.DataSource({
             schema: {
                 model: {

@@ -1,10 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8"/>
+    <title></title>
+
+    <link rel="stylesheet" href="css/kendo.common-material.min.css"/>
+    <link rel="stylesheet" href="css/kendo.material.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
+
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/kendo.js"></script>
+    <script src="js/lib/kendo.culture.pl-PL.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.js"></script>
+    <script src="http://kendo.cdn.telerik.com/<version>/js/messages/kendo.messages.pl-PL.min.js"></script>
+
 </head>
 <body>
+<div>
+    <!-- Container glówne okno-->
+    <div id="oknoGlowne"
+         data-role="window"
+         data-title="Lista użytkowników"
+         data-bind="visible: isVisible"
+         data-width="800"
+         data-height="400"
+         style="padding:0; border: none;"
+         data-actions="[
+                 'Pin',
+                 'Minimize',
+                 'Maximize',
+                 'Close',
+                 ]"
+    >
+
+        <div data-role="splitter"
+             data-orientation="vertical"
+             data-panes="[{
+             collapsible: false,
+             resizable: false,
+             size: '30px'
+             },{
+             collapsible: false,
+             resizable: true
+             }]"
+             style="height: 100%; border: none;">
+            <!-- Główny div-->
+            <div>
+                <!-- Menu główne-->
+                <div class="menuGlowne"
+                     data-role="menu"
+                     data-resizable="true"
+                     data-bind="events: { select: onMenuSelect }"
+                     style="width: 100%; border: none;background-color: lightgray; ">
+                    <li><input class="search"
+                               style="width:150px;"
+                               data-spinners="false"
+                               placeholder="Rola"></li>
+                    <li><input class="search"
+                               style="width:150px;"
+                               data-spinners="false"
+                               placeholder="Loginid"></li>
+                    <li data-menu-id="dodajUzytkownika"
+                        data-title="Dodaj użytkownika"
+                        data-role="tooltip"
+                        data-auto-hide="true"
+                        data-position="top">
+                        <span class="fa fa-plus"></span></li>
+                    <li data-menu-id="edycjauzytkownika"
+                        data-title="Edytuj/uzupełnij dane użytkownika"
+                        data-role="tooltip"
+                        data-auto-hide="true"
+                        data-position="top">
+                        <span class="fa fa-pencil-square-o"></span></li>
+                </div>
+                <div>
+                    <div data-role="grid"
+                         data-editable="false"
+                         data-sortable="true"
+                         data-pageable='{
+                             "previousNext": true,
+                             "numeric": true,
+                             "pageSizes": true,
+                             "info": true
+                             }'
+
+                         data-resizable="true"
+                         data-columns="[
+                             { 'field': 'login', 'width': 50, 'title' : 'Login'},
+                             { 'field': 'naz_druk','width': 50, 'title' : 'Nazwa drukowana' },
+                             { 'field': 'naz_wys','width': 50, 'title' : 'Nazwa wyświetlana' },
+                             { 'field': 'zabl','width': 20, 'title' : 'Zablokowany' },
+                             { 'field': 'arch','width': 20, 'title' : 'Zarchiwizowany' },
+                             { 'field': 'ost_log','width': 50, 'title' : 'Ostatnie logowanie','format': '{0:MM/dd/yyyy}' },
+                             { 'field': 'il_log','width': 30, 'title' : 'Ilość logowań' },
+                             { 'field': 'gen_zap','width': 30, 'title' : 'Wygenerowane zapytania' },
+                             { 'field': 'il_zap', 'width': 30,'title' : 'Ilość zapytań' },
+                             {'command': ['edit', 'destroy'],'width': 50, 'title': '&nbsp;'},
+                             ]"
+
+
+                         data-editable="inline"
+
+
+                         data-bind="source: products,
+                            visible: isVisible,
+                            events: {
+                            save: onSave
+                            }"
+
+                         data-filterable="[
+                         { field: 'login', operator: 'startswith' },
+                         { field: 'naz_druk', operator: 'startswith' },
+                         { field: 'naz_wys', operator: 'startswith' },
+                         { field: 'zabl', operator: 'startswith' },
+                         { field: 'arch', operator: 'startswith' },
+                         { field: 'ost_log', operator: 'startswith' },
+                         { field: 'il_log', operator: 'startswith' },
+                         { field: 'gen_zap', operator: 'startswith' },
+                         { field: 'il_zap',operator: 'startswith'  },
+
+
+                         ]"
+
+                         style="height: 100%; border: none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var viewModel;
+        viewModel = kendo.observable({
+            isVisible: true,
+
+            products: new kendo.data.DataSource({
+                schema: {
+                    model: {
+                        id: "ProductID",
+                        fields: {
+                            login: {type: "string"},
+                            naz_druk: {type: "string"},
+                            naz_wys: {type: "string"},
+                            zabl: {type: "string"},
+                            arch: {type: "string"},
+                            ost_log: {type: "date"},
+                            il_log: {type: "number"},
+                            gen_zap: {type: "number"},
+                            il_zap: {type: "number"}
+                        }
+                    }
+                },
+                    batch: true,
+                    data: [{
+                        "login": "AGCDE",
+                        "naz_druk": "Jan Kowalski",
+                        "naz_wys": "Jan Kowalski",
+                        "zabl": "TAK",
+                        "arch": "NIE",
+                        "ost_log": "12/12/2016",
+                        "il_log": "5",
+                        "gen_zap": "5",
+                        "il_zap": "5"
+                    },
+                        {
+                            "login": "bbbGCDE",
+                            "naz_druk": "Jan Nowak",
+                            "naz_wys": "Jan Nowak",
+                            "zabl": "NIE",
+                            "arch": "NIE",
+                            "ost_log": "12/06/2016",
+                            "il_log": "2",
+                            "gen_zap": "2",
+                            "il_zap": "2"
+                        }]
+                })
+        });
+        kendo.bind($("#oknoGlowne"), viewModel);
+
+        kendo.culture("pl-PL");
+
+
+    </script>
+
+
+</div>
+
 
 </body>
 </html>

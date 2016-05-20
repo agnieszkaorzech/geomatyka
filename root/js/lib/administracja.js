@@ -342,16 +342,17 @@ $(document).ready(function () {
                 }],
                 "SubModules": []
                 }]
-            }],
+            }]
         }]};
 
-    var array = new Array();
-    var object = new Object();
-    object.Name = jsondata.GetMenu[0].OutletCode;
+    var array = [];
+    var object = {};
+    object.Text = jsondata.GetMenu[0].OutletCode;
     object.SubModules = jsondata.GetMenu[0].MenuGroup;
     array.push(object);
 
-    var inlineDefault = new kendo.data.HierarchicalDataSource({
+    var inlineDefault;
+    inlineDefault = new kendo.data.HierarchicalDataSource({
         data: array,
         schema: {
             model: {
@@ -362,16 +363,25 @@ $(document).ready(function () {
 
     $("#treeview-left").kendoTreeView({
         dataSource: inlineDefault,
-        dataTextField: "Name",
-
+        dataTextField: "Text"
     });
+
+
+    // $(function(){
+    //     $("#div2").hide();
+    //     $("#detailUprawnienia").on("click", function(){
+    //         $("#div1, #div2").toggle();
+    //     });
+    // });
+
+
+
 
 
     var viewModel;
     viewModel = kendo.observable({
         isVisible: true,
         onSave: function (e) {
-            kendoConsole.log("event :: save(" + kendo.stringify(e.values, null, 4) + ")");
         },
         onMenuSelect: function (e) {
             var text = $(e.item).data('menuId');
@@ -433,14 +443,13 @@ $(document).ready(function () {
                 }]
         })
     });
-    //
-    // var viewModel_dodajUprawnienia=kendo.observable({
-    //     id: null,
-    //     update: console.log(viewModel)
-    //
-    // });
+
+
+
+
     kendo.bind($("#oknoGlowne"), viewModel);
-    // kendo.bind($("#window3"), viewModel_dodajUprawnienia);
+
+
 });
 
 
